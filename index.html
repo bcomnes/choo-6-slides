@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+  <title>Big</title>
+  <link href='big.css' rel='stylesheet' type='text/css' />
+  <link href='highlight.css' rel='stylesheet' type='text/css' />
+  <style>
+    .new-shiny { background: #aaaaaa; }
+  </style>
+  <script src='big.js'></script>
+  <script src='highlight.js'></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body class='light'>
+  <div>use &harr; to navigate</div>
+  <div>
+      <div>
+        Bret Comnes
+      </div>
+      <div>🌐<a href="https://bret.io">bret.io</a></div>
+        <div>🐦<a href="https://twitter.com/uhhyeahbret">@uhhyeahbret</a></div>
+        <div>🐈<a href="https://github.com/bcomnes">github.com/bcomnes</a></div>
+      </div>
+  </div>
+  <div data-background-image="img/hypermodules.png"></div>
+  <div data-background-image="img/netlify.png"></div>
+  <div>
+    Choo@6
+    <div>🚂🚃🚃🚃🚃🚃</div>
+  </div>
+  <div data-background-image="img/website.png">
+      <a href="https://choo.io">choo.io</a>
+  </div>
+  <div>Choo is similar to React</div>
+  <div>⚠️🔥</div>
+  <div>(I say all of this with the upmost ❤️ for react and ecosystem)</div>
+  <div>What is React really?</div>
+  <div>
+    <ul>
+      <li>Pure function font-end templates</li>
+      <li>Stateful component model with lifecycle events</li>
+      <li>Efficient DOM diffing between renders</li>
+      <li>Virtual DOM model enabling mutliple render targets</li>
+      <li>Syntetic events</li>
+      <li>Syntetic style properties</li>
+      <li>Automagic component traversal (something something immutable) </li>
+      <li>JSX/Babel/Webpack/Redux/Flow etc</li>
+      <li>~360,142 kB (but way bigger in practice)</li>
+      <li>Trivia: what else did I miss?</li>
+    </ul>
+  </div>
+  <div>
+    <strong>The React App Game (in theory):</strong>
+    <ul>
+      <li>Decide how you store app level data (<code>redux</code>)</li>
+      <li>Decide how you want to route between views (<code>react-router</code> yes, XML for routing  ¯\_(ツ)_/¯)</li>
+      <li>Learn some fancy words for highly specific conventions: Reducer, HOC, Action, Action creator, Transducer, Middleware</li>
+      <li>Pass/Connect app state down as props</li>
+      <li>Somehow get your app state framework action handler into your components</li>
+      <li>That one-off API layer that one person on your team wrote but didn't document</li>
+      <li>How will you style your app?</li>
+      <li>Get paid 💵</li>
+    </ul>
+  </div>
+  <div>React was a game changer 🎉</div>
+  <div>It matured a lot of really good ideas 🎊</div>
+  <div>It came with a lot of baggage 👹</div>
+  <div><img src="img/optional.png"></div>
+  <div>Babel/JSX isn't optional in practice</div>
+  <div><img src="img/jsx.png"></div>
+  <div>Redux and other overly complex state management systems are not optional in practice</div>
+  <div data-background-image="img/cake.jpg"></div>
+  <div>Keeping babel, and your team's 🚲🏚 eslint/postcss/wepack loader whateverthefuck pipeline dependencies working and up to date is decent job security</div>
+  <div>😬</div>
+  <div><img src="img/good.png"></div>
+  <div><img src="img/away.jpg"></div>
+  <div><img src="img/away.jpg"></div>
+  <div><img src="img/slim.png"></div>
+  <div>
+    <ul>
+      <li>Pure function font-end templates</li>
+      <li>Stateful component model with lifecycle events</li>
+      <li>Efficient DOM diffing between renders</li>
+      <li><strike>Virtual DOM model enabling multiple render targets</strike></li>
+      <li><strike>Synthetic events</strike></li>
+      <li><strike>Synthetic style properties</strike></li>
+      <li><strike>Automagic component traversal (something something immutable)</strike></li>
+      <li><strike>JSX/Babel/Webpack/Redux/Flow etc</strike></li>
+      <li><strike>~360,142 kB (but way bigger in practice)</strike></li>
+    </ul>
+  </div>
+  <div>
+    <ul>
+      <li>Pure function font-end templates <a href="http://ghub.io/bel"><code>bel</code></a></li>
+      <li>Stateful component model with lifecycle events <a href="http://ghub.io/bel"><code>nanocomponent</code></a></li>
+      <li>Efficient DOM diffing between renders <a href="http://ghub.io/nanomorph"><code>nanomorph</code></a></li>
+      <li>Router (pushstate and hash) <a href="http://ghub.io/nanorouter"><code>nanorouter</code></a></li>
+      <li>Querystrings <a href="http://ghub.io/nanoquery"><code>nanoquery</code></a></li>
+      <li>Querystrings <a href="http://ghub.io/nanoquery"><code>nanoquery</code></a></li>
+      <li>60fps cooperative interleaving (browser async: requestAnimationFrame) <a href="http://ghub.io/nanoraf"><code>nanoraf</code></a></li>
+      <li>4kb</li>
+    </ul>
+  </div>
+  <div>Assume commonJS runtime (e.g. Node.js, browserify, electron)</div>
+  <div><small>(but webpack + Babel ES20Whateverthefuck works too)</small></div>
+  <div>🚂 thats choo</div>
+  <div>What does it look like?</div>
+  <div>
+    <pre><code>
+var html = require('choo/html')
+var log = require('choo-log')
+var choo = require('choo')
+
+var app = choo()
+app.use(log())
+app.use(countStore)
+app.route('/', mainView)
+app.mount('body')
+
+function mainView (state, emit) {
+  return html`
+    &lt;body&gt;
+      &lt;h1&gt;count is ${state.count}&lt;/h1&gt;
+      &lt;button onclick=${onclick}&gt;Increment&lt;/button&gt;
+    &lt;/body&gt;
+  `
+
+  function onclick () {
+    emit('increment', 1)
+  }
+}
+
+function countStore (state, emitter) {
+  state.count = 0
+  emitter.on('increment', function (count) {
+    state.count += count
+    emitter.emit('render')
+  })
+}
+    </code></pre>
+  </div>
+  <div>ITS JUST (modular) JS AND HTML</div>
+  <div>
+    BASIC CONCEPTS
+  </div>
+  <div>
+    BASIC APIS
+  </div>
+  <div>
+    WEBAPPS FOR EVERYONE
+  </div>
+  <div>
+    ITS SUPER FUN 🚂🚃🚃🚃
+  </div>
+  <div>
+    CODE IS ART. ART IS FUN.  IF IT ISN'T FUN ITS BAD ART.  Or at least its not fun art.
+  </div>
+  <div>Server static rendering
+  <pre><code>app.toString()</code></pre>
+  </div>
+  <div>
+    API Overview
+  </div>
+  <div>View and store signature<pre><code>function (state, emit) { }</code></pre></div>
+  <div>Choo state <div><code>state = {}</code></div></div>
+  <div><code><a href="https://github.com/choojs/nanobus">nanobus</a></code></div>
+  <div>
+    <pre><code>
+var nanobus = require('nanobus')
+var bus = nanobus()
+
+bus.on('foo', function (color) {
+  console.log('color is', color)
+})
+
+bus.emit('foo', 'blue')
+    </code></pre>
+  </div>
+  <div><code><a href="https://github.com/choojs/nanomorph">nanomorph</a></code></div>
+  <div>
+    <pre><code>
+var morph = require('nanomorph')
+var html = require('bel')
+
+var tree = html`&lt;div&gt;hello people&lt;/div&gt;`
+tree = morph(tree, html`&lt;div&gt;nanananana-na-no&lt;/div&gt;`)
+tree = morph(tree, html`&lt;div&gt;teeny, tiny, tin bottle&lt;/div&gt;s`)
+    </code></pre>
+  </div>
+  <div><code><a href="https://github.com/choojs/nanorouter">nanorouter</a></code></div>
+  <div>
+    <pre><code>
+var nanorouter = require('nanorouter')
+var router = nanorouter({ default: '/404' })
+
+router.on('/foo', function (params) {
+  console.log('hit /foo')
+})
+router.on('/foo/:bar', function (params) {
+  console.log('hit a route with params', params.bar)
+})
+router.on('/foo#baz', function (params) {
+  console.log('we do hash routes too!')
+})
+router.on('/foo/*', function (params) {
+  console.log('and even wildcards', params.wildcard)
+})
+
+router('/foo/hello-planet')
+    </code></pre>
+  </div>
+  <div><code><a href="https://github.com/choojs/nanocomponent">nanocomponent</a></code></div>
+  <div>
+    <pre><code>
+var Nanocomponent = require('nanocomponent')
+var html = require('bel')
+
+class Button extends Nanocomponent {
+  constructor () {
+    super()
+    this.color = null
+  }
+
+  createElement (color) {
+    this.color = color
+    return html`
+      &lt;div style=&quot;background-color: ${color}&quot;&gt;
+        Color is ${color}
+      &lt;/div&gt;
+    `
+  }
+
+  update (newColor) {
+    return newColor !== this.color
+  }
+}
+
+var myButton = new Button()
+button.render('green')
+    </code></pre>
+    </div>
+    <div>They even work with other framework using <pre><code><a href="http://ghub.io/nanocomponent-adapters">nanocomponent-adapters</a></code></pre></div>
+    <div>
+      <img src="img/org.png">
+    </div>
+    <div>
+      <a href="https://github.com/choojs">github.com/choojs</a>
+    </div>
+    <div>
+      Choo 6 has lots of cool stuff
+    </div>
+    <div>
+      <a href="https://medium.com/@yoshuawuyts/choo-v6-6e494267b57e">READ THE BLOGPOST</a>
+    </div>
+    <div>
+      Upgraded render engines
+Tl;Dr: things are faster, and more stable . Choo v6 includes the upgrades to bel@5 and nanomorph@5. This means up to 20x faster server rendering, and up to 10x improved browser rendering speeds. We've also fixed DOM node caching, and introduced sibling node reordering. 💯
+    </div>
+    <div>
+      <ul>
+        <li><code><a href="https://github.com/choojs/create-choo-app">create-choo-app</a></code></li>
+        <li><code><a href="https://github.com/choojs/bankai">bankai</a></code></li>
+        <li>Better event system</li>
+        <li>Tracing</li>
+        <li>Query Strings + Current Location</li>
+        <li>nanocomponent@6</li>
+        <li>more! 🚂</li>
+      </ul>
+    </div>
+    <div><img src="img/ha.jpg"></div>
+    <div>Check us out! We're on IRC
+    <div><code>freenode#choo</code></div></div>
+    <div><img src="img/irc.png"></div>
+    <div><iframe width="560" height="315" src="https://www.youtube.com/embed/dsfTBydTuk8" frameborder="0" allowfullscreen></iframe></div>
+    <div>Mark zuckerberg is a lizard 🦎</div>
+    <div>11 Seconds<iframe width="560" height="315" src="https://www.youtube.com/embed/jiudBq7z8wk" frameborder="0" allowfullscreen></iframe></div>
+    <div>
+      🌍☮️❤️🚂
+    </div>
+</body>
+</html>
