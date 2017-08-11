@@ -35,16 +35,16 @@
   </div>
   <div>Choo is similar to React</div>
   <div>⚠️🔥</div>
-  <div>(I say all of this with the upmost ❤️ for react and ecosystem)</div>
+  <div>(I say all of this with the up-most ❤️ for react and ecosystem)</div>
   <div>What is React really?</div>
   <div>
     <ul>
       <li>Pure function font-end templates</li>
       <li>Stateful component model with lifecycle events</li>
       <li>Efficient DOM diffing between renders</li>
-      <li>Virtual DOM model enabling mutliple render targets</li>
-      <li>Syntetic events</li>
-      <li>Syntetic style properties</li>
+      <li>Virtual DOM model enabling multiple render targets</li>
+      <li>Synthetic events</li>
+      <li>Synthetic style properties</li>
       <li>Automagic component traversal (something something immutable) </li>
       <li>JSX/Babel/Webpack/Redux/Flow etc</li>
       <li>~360,142 kB (but way bigger in practice)</li>
@@ -76,8 +76,9 @@
   <div>😬</div>
   <div><img src="img/good.png"></div>
   <div><img src="img/away.jpg"></div>
-  <div><img src="img/away.jpg"></div>
   <div><img src="img/slim.png"></div>
+  <div>Choo</div>
+  <div><img src="img/yosh.png"></div>
   <div>
     <ul>
       <li>Pure function font-end templates</li>
@@ -93,17 +94,17 @@
   </div>
   <div>
     <ul>
-      <li>Pure function font-end templates <a href="http://ghub.io/bel"><code>bel</code></a></li>
-      <li>Stateful component model with lifecycle events <a href="http://ghub.io/bel"><code>nanocomponent</code></a></li>
-      <li>Efficient DOM diffing between renders <a href="http://ghub.io/nanomorph"><code>nanomorph</code></a></li>
-      <li>Router (pushstate and hash) <a href="http://ghub.io/nanorouter"><code>nanorouter</code></a></li>
-      <li>Querystrings <a href="http://ghub.io/nanoquery"><code>nanoquery</code></a></li>
-      <li>Querystrings <a href="http://ghub.io/nanoquery"><code>nanoquery</code></a></li>
-      <li>60fps cooperative interleaving (browser async: requestAnimationFrame) <a href="http://ghub.io/nanoraf"><code>nanoraf</code></a></li>
-      <li>4kb</li>
+      <li>Pure function font-end templates <a href="https://github.com/shama/bel"><code>bel</code></a></li>
+      <li>Stateful component model with lifecycle events <a href="https://github.com/shama/bel"><code>nanocomponent</code></a></li>
+      <li>Efficient DOM diffing between renders <a href="https://github.com/choojs/nanomorph"><code>nanomorph</code></a></li>
+      <li>Router (pushstate and hash) <a href="https://github.com/choojs/nanorouter"><code>nanorouter</code></a></li>
+      <li>Querystrings <a href="https://github.com/choojs/nanoquery"><code>nanoquery</code></a></li>
+      <li>State management <a href="https://github.com/choojs/nanobus"><code>nanobus</code></a></li>
+      <li>60fps cooperative interleaving (browser async: requestAnimationFrame) <a href="https://github.com/choojs/nanoraf"><code>nanoraf</code></a></li>
+      <li>✨4kb✨ (and shrinking)</li>
     </ul>
   </div>
-  <div>Assume commonJS runtime (e.g. Node.js, browserify, electron)</div>
+  <div>Assume commonJS runtime (e.g. Node.js, browserify, electron) 🚀🐢🚀</div>
   <div><small>(but webpack + Babel ES20Whateverthefuck works too)</small></div>
   <div>🚂 thats choo</div>
   <div>What does it look like?</div>
@@ -141,7 +142,7 @@ function countStore (state, emitter) {
 }
     </code></pre>
   </div>
-  <div>ITS JUST (modular) JS AND HTML</div>
+  <div>ITS JUST (modular) JS AND HTML </div>
   <div>
     BASIC CONCEPTS
   </div>
@@ -149,7 +150,7 @@ function countStore (state, emitter) {
     BASIC APIS
   </div>
   <div>
-    WEBAPPS FOR EVERYONE
+    🔰WEBAPPS FOR EVERYONE🔰
   </div>
   <div>
     ITS SUPER FUN 🚂🚃🚃🚃
@@ -157,14 +158,48 @@ function countStore (state, emitter) {
   <div>
     CODE IS ART. ART IS FUN.  IF IT ISN'T FUN ITS BAD ART.  Or at least its not fun art.
   </div>
-  <div>Server static rendering
+  <div>Server/static rendering:
   <pre><code>app.toString()</code></pre>
   </div>
   <div>
     API Overview
   </div>
   <div>View and store signature<pre><code>function (state, emit) { }</code></pre></div>
-  <div>Choo state <div><code>state = {}</code></div></div>
+  <div>Choo state <div><pre><code>state = { foo: bar }</code></div><pre></div>
+<div>
+    <pre><code>
+var html = require('choo/html')
+var log = require('choo-log')
+var choo = require('choo')
+
+var app = choo()
+app.use(log())
+app.use(countStore)
+app.route('/', mainView)
+app.mount('body')
+
+function mainView (state, emit) {
+  return html`
+    &lt;body&gt;
+      &lt;h1&gt;count is ${state.count}&lt;/h1&gt;
+      &lt;button onclick=${onclick}&gt;Increment&lt;/button&gt;
+    &lt;/body&gt;
+  `
+
+  function onclick () {
+    emit('increment', 1)
+  }
+}
+
+function countStore (state, emitter) {
+  state.count = 0
+  emitter.on('increment', function (count) {
+    state.count += count
+    emitter.emit('render')
+  })
+}
+    </code></pre>
+  </div>
   <div><code><a href="https://github.com/choojs/nanobus">nanobus</a></code></div>
   <div>
     <pre><code>
@@ -176,6 +211,40 @@ bus.on('foo', function (color) {
 })
 
 bus.emit('foo', 'blue')
+    </code></pre>
+  </div>
+  <div>
+    <pre><code>
+var html = require('choo/html')
+var log = require('choo-log')
+var choo = require('choo')
+
+var app = choo()
+app.use(log())
+app.use(countStore)
+app.route('/', mainView)
+app.mount('body')
+
+function mainView (state, emit) {
+  return html`
+    &lt;body&gt;
+      &lt;h1&gt;count is ${state.count}&lt;/h1&gt;
+      &lt;button onclick=${onclick}&gt;Increment&lt;/button&gt;
+    &lt;/body&gt;
+  `
+
+  function onclick () {
+    emit('increment', 1)
+  }
+}
+
+function countStore (state, emitter) {
+  state.count = 0
+  emitter.on('increment', function (count) {
+    state.count += count
+    emitter.emit('render')
+  })
+}
     </code></pre>
   </div>
   <div><code><a href="https://github.com/choojs/nanomorph">nanomorph</a></code></div>
@@ -241,9 +310,12 @@ var myButton = new Button()
 button.render('green')
     </code></pre>
     </div>
-    <div>They even work with other framework using <pre><code><a href="http://ghub.io/nanocomponent-adapters">nanocomponent-adapters</a></code></pre></div>
+    <div>They even work with other frameworks using <pre><code><a href="https://github.com/choojs/nanocomponent-adapters">nanocomponent-adapters</a></code></pre></div>
     <div>
       <img src="img/org.png">
+    </div>
+    <div>
+      <img src="img/handbook.png">
     </div>
     <div>
       <a href="https://github.com/choojs">github.com/choojs</a>
@@ -276,6 +348,7 @@ Tl;Dr: things are faster, and more stable . Choo v6 includes the upgrades to bel
     <div><iframe width="560" height="315" src="https://www.youtube.com/embed/dsfTBydTuk8" frameborder="0" allowfullscreen></iframe></div>
     <div>Mark zuckerberg is a lizard 🦎</div>
     <div>11 Seconds<iframe width="560" height="315" src="https://www.youtube.com/embed/jiudBq7z8wk" frameborder="0" allowfullscreen></iframe></div>
+    <div><img src="img/people.png"></div>
     <div>
       🌍☮️❤️🚂
     </div>
